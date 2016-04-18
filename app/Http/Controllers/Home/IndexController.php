@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Task;
+namespace App\Http\Controllers\Home;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class Work extends Controller
+class IndexController extends Controller
 {
     public function getIndex()
     {
-        return "Work";
+        return view('home.welcome')->with('welcome', 'Welcome');
     }
 }

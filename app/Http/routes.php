@@ -10,9 +10,17 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', 'Welcome\IndexController@getIndex');
 
+// 前台
+Route::get('/', 'Home\IndexController@getIndex');
 
-Route::controller('task/work','Task\Work');
-Route::controller('task/manage','Task\Manage');
-Route::controller('task','Task\Task');
+// 认证路由...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+// 注册路由...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+//用户中心
+Route::controller('user/index', 'User\IndexController');

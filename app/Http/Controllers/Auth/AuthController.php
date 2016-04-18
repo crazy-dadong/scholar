@@ -23,10 +23,15 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+
+    /**
+     * 登录重定向目录
+     */
+    protected $redirectPath = '/user/index';
+
     /**
      * Create a new authentication controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
