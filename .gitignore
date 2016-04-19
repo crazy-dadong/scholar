@@ -5,3 +5,6 @@ Homestead.json
 .env
 .idea
 .vagrant
+
+.vagrant/machines/default/virtualbox/action_set_name
+.vagrant/machines/default/virtualbox/action_set_name
