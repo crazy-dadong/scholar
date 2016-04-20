@@ -1,0 +1,21 @@
+{
+  "name": "Scholar",
+  "description": "",
+  "main": "",
+  "authors": [
+    "crazy-dadong <crazy_dadong@outlook.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/crazy-dadong/Scholar",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "resources/assets",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "admin-lte#^2.3.3"
+  }
+}

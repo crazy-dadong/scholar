@@ -5,6 +5,5 @@ Homestead.json
 .env
 .idea
 .vagrant
-
-.vagrant/machines/default/virtualbox/action_set_name
-.vagrant/machines/default/virtualbox/action_set_name
+#资源文件
+resources/bower_components
