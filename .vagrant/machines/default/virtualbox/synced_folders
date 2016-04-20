@@ -1,1 +1,1 @@
-{"virtualbox":{"/home/vagrant/scholar":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/scholar","hostpath":"C:/wamp/www/scholar","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/wamp/www/scholar","disabled":false}}}
+{"virtualbox":{"/home/vagrant/scholar":{"type":null,"mount_options":[],"guestpath":"/home/vagrant/scholar","hostpath":"C:/Users/crazy/PhpstormProjects/Scholar","disabled":false},"/vagrant":{"guestpath":"/vagrant","hostpath":"C:/Users/crazy/PhpstormProjects/Scholar","disabled":false}}}
