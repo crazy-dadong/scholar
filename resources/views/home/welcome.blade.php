@@ -1,43 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Laravel</title>
+@extends('layout.core')
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('title'){{ $welcome }}@endsection
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                display: table;
-                font-weight: 100;
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 96px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">{{ $welcome }}</div>
-
-            </div>
-        </div>
-    </body>
-</html>
+@section('content')
+    <h1>{{ $welcome }}</h1>
+@endsection

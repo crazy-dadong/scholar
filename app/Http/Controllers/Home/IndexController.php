@@ -11,6 +11,8 @@ class IndexController extends Controller
 {
     public function getIndex()
     {
-        return view('home.welcome')->with('welcome', 'Welcome');
+
+//        echo 'ok';
+        return view('home.welcome')->with('welcome', 'Hello Word!');
     }
 }
