@@ -22,21 +22,29 @@ const PLUGINS = BOWER_PATH+'AdminLTE/plugins/';
 
 elixir(function(mix) {
     mix.less([
+
+        BOWER_PATH+'AdminLTE/bootstrap/css/bootstrap.css',
         //adminLTE
         ADMINLTE_BUILD_PATH+'less/AdminLTE.less',
         //adminLTE theme
-        ADMINLTE_BUILD_PATH+'less/skins/_all-skins.less',
+        ADMINLTE_BUILD_PATH+'less/skins/_all-skins.less'
         //icheck
-        PLUGINS+'iCheck/all.css'
+        // PLUGINS+'iCheck/all.css'
     ],'public/css/core.css');
 
     //js脚本
     mix.scripts([
         BOWER_PATH+'AdminLTE/plugins/jQuery/jQuery-2.2.0.min.js',
         BOWER_PATH+'AdminLTE/bootstrap/js/bootstrap.min.js',
-        BOWER_PATH+'AdminLTE/dist/js/app.min.js',
-        PLUGINS+'iCheck/icheck.min.js'
+        BOWER_PATH+'AdminLTE/dist/js/app.min.js'
+        // PLUGINS+'iCheck/icheck.min.js'
     ],'public/js/core.js');
 
     mix.version(['css/core.css','js/core.js']);
+
+
+    elixir(function(mix) {
+        mix.copy('resources/bower_components/AdminLTE/bootstrap/fonts', 'public/build/fonts');
+        mix.copy('resources/bower_components/AdminLTE/plugins/iCheck', 'public/plugins/iCheck');
+    });
 });
