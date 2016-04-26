@@ -11,14 +11,16 @@
 |
 */
 
-// 前台
-Route::get('/', 'Home\IndexController@getIndex');
 
+// 欢迎页面
+Route::get('/', 'Home\IndexController@getIndex');
 // 认证路由...
 Route::controller('auth', 'Auth\AuthController');
-//Route::get('auth/login', 'Auth\AuthController@getLogin');
-//Route::post('auth/login', 'Auth\AuthController@postLogin');
-//Route::get('auth/logout', 'Auth\AuthController@getLogout');
-//// 注册路由...
-//Route::get('auth/register', 'Auth\AuthController@getRegister');
-//Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+
+// 用户工作界面
+
+// 后台管理
+Route::group(['prefix'=>'admin'], function () {
+    Route::controller('/', 'Admin\IndexController');
+});

@@ -7,6 +7,7 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use URL;
 
 class AuthController extends Controller
 {
@@ -27,7 +28,7 @@ class AuthController extends Controller
     /**
      * 登录重定向目录
      */
-    protected $redirectPath = '/user/index';
+    protected $redirectPath ;
 
     /**
      * Create a new authentication controller instance.
@@ -35,6 +36,8 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+        // 登陆重定向目录
+        $this->redirectPath = URL::action('Home\IndexController@getIndex');
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
