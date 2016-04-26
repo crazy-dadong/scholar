@@ -13,7 +13,7 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="#"><b>Scholar</b>系统</a>
+        <a href="{{ URL::action('Home\IndexController@getIndex') }}"><b>Scholar</b>系统</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -30,11 +30,11 @@
         <form method="POST" action="/auth/login">
             {!! csrf_field() !!}
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" name="email" placeholder="注册邮箱">
+                <input type="email" class="form-control" name="email" placeholder="邮箱">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password" placeholder="登陆密码">
+                <input type="password" class="form-control" name="password" placeholder="密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -55,7 +55,7 @@
 
 
         <a href="#">忘记密码</a><br>
-        <a href="#" class="text-center">注册新用户</a>
+        <a href="{{ URL::action('Auth\AuthController@getRegister') }}" class="text-center">注册新用户</a>
 
     </div>
     <!-- /.login-box-body -->
