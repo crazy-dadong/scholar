@@ -18,12 +18,13 @@
     <!-- /.login-logo -->
     <div class="login-box-body">
         <p class="login-box-msg">
-            @if (count($errors) > 0)
-                @foreach ($errors->all() as $error)
-                    {{ $error }}
-                @endforeach
-            @else
-                请登录
+
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
+                <p class="callout callout-danger">{{ $error }}</p>
+            @endforeach
+        @else
+            <p class="login-box-msg ">请登录</p>
             @endif
         </p>
 
