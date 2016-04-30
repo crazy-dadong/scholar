@@ -12,15 +12,17 @@
 */
 
 
-// 欢迎页面
-Route::get('/', 'Home\IndexController@getIndex');
 // 认证路由...
 Route::controller('auth', 'Auth\AuthController');
 
 
-// 用户工作界面
-
 // 后台管理
 Route::group(['prefix'=>'admin'], function () {
     Route::controller('/', 'Admin\IndexController');
+});
+
+
+// 欢迎界面
+Route::group([], function () {
+    Route::get('/', 'Home\IndexController@getIndex');
 });

@@ -37,6 +37,19 @@
             </div>
             <div class="row">
                 <div class="col-xs-8">
+                    <div class="form-group has-feedback">
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="验证码">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
+
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <button class="btn btn-primary">获取验证码</button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-8">
                     <div class="checkbox icheck">
                         <label>
                             <input type="checkbox"> 我同意 <a href="#">条款</a>
