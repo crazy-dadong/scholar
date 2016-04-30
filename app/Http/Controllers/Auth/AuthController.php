@@ -9,7 +9,10 @@ use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 // Dev
 use URL;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Mail;
+
 
 class AuthController extends Controller
 {
@@ -83,9 +86,33 @@ class AuthController extends Controller
             );
         }
 
+        //判断邮箱验证码
+        if($request->input('email_token') != $site = session('email_token')){
+            $errors = collect(['邮箱验证码输入不正确']);
+            return back()->withInput()->with('errors', $errors);
+        }
+
+
         Auth::login($this->create($request->all()));
 
         return redirect($this->redirectPath());
+    }
+
+    public function getToken(Request $request)
+    {
+        //TODO 参数检查
+
+        $email = $request->input('email');
+
+        $emailToken =  str_random(6);
+        session(['email_token'=> $emailToken]);
+
+        //TODO 过期时间
+//        session(['email_created_at'=> $emailToken]);
+        Mail::raw("邮箱验证码： {$emailToken}", function ($message) use ($email) {
+            $to = $email;
+            $message ->to($to)->subject('欢迎使用 Scholar');
+        });
     }
 
 }

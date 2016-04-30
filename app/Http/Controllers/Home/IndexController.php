@@ -14,4 +14,5 @@ class IndexController extends Controller
 //        echo 'ok';
 //        return view('home.welcome')->with('welcome', 'Hello Word!');
     }
+
 }

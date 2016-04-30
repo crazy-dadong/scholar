@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'scholar@crazy-dadong.com', 'name' => 'Scholar任务管理系统'],
 
     /*
     |--------------------------------------------------------------------------

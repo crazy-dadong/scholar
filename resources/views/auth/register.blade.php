@@ -11,11 +11,18 @@
 <body class="hold-transition register-page">
 <div class="register-box">
     <div class="register-logo">
-        <a href="../../index2.html"><b>Scholar</b>系统</a>
+        <a href="{{ URL::action('Home\IndexController@getIndex') }}"><b>Scholar</b>系统</a>
     </div>
 
     <div class="register-box-body">
-        <p class="login-box-msg">注册新会员</p>
+
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
+                <p class="callout callout-danger">{{ $error }}</p>
+            @endforeach
+        @else
+            <p class="login-box-msg ">注册新会员</p>
+        @endif
 
         <form action="{{ URL::action('Auth\AuthController@postRegister') }}" method="post">
             {!! csrf_field() !!}
@@ -38,13 +45,13 @@
             <div class="row">
                 <div class="col-xs-8">
                     <div class="form-group has-feedback">
-                        <input type="password" name="password_confirmation" class="form-control" placeholder="验证码">
+                        <input type="text" name="email_token" class="form-control" placeholder="验证码">
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
 
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <button class="btn btn-primary">获取验证码</button>
+                    <button id="get-email-token" class="btn btn-primary">获取验证码</button>
                 </div>
             </div>
 
@@ -79,6 +86,18 @@
             radioClass: 'iradio_square-blue',
             increaseArea: '20%' // optional
         });
+    });
+    $("#get-email-token").bind('click', function (e) {
+        e.preventDefault();
+        $(this).prop("disabled","disabled");
+        var email = $("input[name='email']").val();
+
+        $.get("{{ URL::action('Auth\AuthController@getToken') }}",
+                {
+                    email: email
+                },function () {
+
+                },'json');
     });
 </script>
 </body>
