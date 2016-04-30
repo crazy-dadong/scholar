@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Data\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -113,6 +113,7 @@ class AuthController extends Controller
             $to = $email;
             $message ->to($to)->subject('欢迎使用 Scholar');
         });
+        return ['status', 'success'];
     }
 
 }

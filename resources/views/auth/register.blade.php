@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-xs-4">
-                    <button id="get-email-token" class="btn btn-primary">获取验证码</button>
+                    <button id="get-token" class="btn btn-primary btn-block btn-flat">获取验证码</button>
                 </div>
             </div>
 
@@ -87,17 +87,34 @@
             increaseArea: '20%' // optional
         });
     });
-    $("#get-email-token").bind('click', function (e) {
+    $("#get-token").bind('click', function (e) {
         e.preventDefault();
         $(this).prop("disabled","disabled");
+        $(this).html("正在获取");
         var email = $("input[name='email']").val();
-
-        $.get("{{ URL::action('Auth\AuthController@getToken') }}",
-                {
-                    email: email
-                },function () {
-
-                },'json');
+        $.ajax({
+            url: "{{ URL::action('Auth\AuthController@getToken') }}",
+            data: {
+                email: email
+            },
+            success: function () {
+                var getToken = $("#get-token");
+                var waitTime = 60;
+                var IntervalId = setInterval(function () {
+                    waitTime--;
+                    getToken.html(waitTime+" 秒后重试");
+                    if(waitTime < 0){
+                        clearInterval(IntervalId);
+                        getToken.html("获取验证码");
+                        getToken.prop("disabled",false) ;
+                    }
+                },1000);
+            },
+            error: function (e) {
+                console.log(e);
+            },
+            dataType: "json"
+        });
     });
 </script>
 </body>
