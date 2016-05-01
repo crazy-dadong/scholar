@@ -10,9 +10,9 @@ class IndexController extends Controller
 {
     public function getIndex()
     {
-        echo URL::action('Home\IndexController@getIndex');
+//        echo URL::action('Home\IndexController@getIndex');
 //        echo 'ok';
-//        return view('home.welcome')->with('welcome', 'Hello Word!');
+        return view('home.welcome')->with('welcome', 'Hello Word!');
     }
 
 }
