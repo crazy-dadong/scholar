@@ -27,7 +27,11 @@ elixir(function(mix) {
         //adminLTE
         ADMINLTE_BUILD_PATH+'less/AdminLTE.less',
         //adminLTE theme
-        ADMINLTE_BUILD_PATH+'less/skins/_all-skins.less'
+        ADMINLTE_BUILD_PATH+'less/skins/_all-skins.less',
+        //ionicons
+        BOWER_PATH+'font-awesome/less/font-awesome.less'
+        //ionicons
+        // BOWER_PATH+'Ionicons/less/ionicons.less'
         //icheck
         // PLUGINS+'iCheck/all.css'
     ],'public/css/core.css');
@@ -46,5 +50,7 @@ elixir(function(mix) {
     elixir(function(mix) {
         mix.copy('resources/bower_components/AdminLTE/bootstrap/fonts', 'public/build/fonts');
         mix.copy('resources/bower_components/AdminLTE/plugins/iCheck', 'public/plugins/iCheck');
+        mix.copy('resources/bower_components/font-awesome/fonts', 'public/build/fonts');
+        // mix.copy('resources/bower_components/Ionicons/fonts', 'public/build/fonts');
     });
 });
