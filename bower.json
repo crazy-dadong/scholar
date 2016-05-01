@@ -16,6 +16,7 @@
     "tests"
   ],
   "dependencies": {
-    "AdminLTE": "admin-lte#^2.3.3"
+    "AdminLTE": "admin-lte#^2.3.3",
+    "Ionicons": "ionicons#^2.0.1"
   }
 }
