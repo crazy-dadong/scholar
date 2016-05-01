@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ elixir('css/core.css') }}"/>
     <link rel="stylesheet" href="/plugins/iCheck/all.css">
 </head>
-<body class="hold-transition register-page">
+<body class="hold-transition register-page" style="background-image: url('/img/welcome-bg.jpg')">
 <div class="register-box">
     <div class="register-logo">
         <a href="{{ URL::action('Home\IndexController@getIndex') }}"><b>Scholar</b>系统</a>

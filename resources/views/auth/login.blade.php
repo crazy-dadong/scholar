@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/plugins/iCheck/all.css">
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page" style="background-image: url('/img/welcome-bg.jpg')">
 
 <div class="login-box">
     <div class="login-logo">

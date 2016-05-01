@@ -93,8 +93,8 @@
                 </div>
                 <div class="col-md-4 col-md-offset-4">
                     <div class="row">
-                        <div class="col-md-6"><a class="btn btn-primary btn-block" href="#" role="button">登录</a></div>
-                        <div class="col-md-6"><a class="btn btn-primary btn-block" href="#" role="button">注册</a></div>
+                        <div class="col-md-6"><a class="btn btn-primary btn-block" href="{{ URL::action('Auth\AuthController@getLogin') }}" role="button">登录</a></div>
+                        <div class="col-md-6"><a class="btn btn-primary btn-block" href="{{ URL::action('Auth\AuthController@getRegister') }}" role="button">注册</a></div>
                     </div>
                 </div>
             </div>
