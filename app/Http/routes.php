@@ -11,6 +11,7 @@
 |
 */
 
+// 警告： 顺序不能随便更改
 
 // 认证路由...
 Route::controller('auth', 'Auth\AuthController');
@@ -20,6 +21,12 @@ Route::controller('auth', 'Auth\AuthController');
 Route::group(['prefix'=>'admin'], function () {
     Route::controller('/', 'Admin\IndexController');
 });
+
+// 用户管理
+Route::group(['prefix'=>'user'], function () {
+    Route::controller('/', 'User\DashboardController');
+});
+
 
 
 // 欢迎界面

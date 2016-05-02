@@ -42,7 +42,7 @@ class AuthController extends Controller
     public function __construct()
     {
         // 登陆重定向目录
-        $this->redirectPath = URL::action('Home\IndexController@getIndex');
+        $this->redirectPath = URL::action('User\DashboardController@getIndex');
         $this->middleware('guest', ['except' => 'getLogout']);
     }
 
