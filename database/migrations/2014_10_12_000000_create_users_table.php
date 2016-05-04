@@ -18,7 +18,6 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->boolean('is_admin');
-            $table->boolean('is_disabled');
             $table->bigInteger('task_id')->default(0);  //如果为0 则当前没有正在工作的内容
             $table->timestamp('task_begin_at')->default(0);
             $table->rememberToken();

@@ -17,7 +17,6 @@ class UserTableSeeder extends Seeder
             'email' => 'crazy_dadong@outlook.com',
             'password' => bcrypt('0546GRD.wsfkdd'),
             'is_admin' => 1,
-            'is_disabled' => 0,
             'created_at' => date('Y-m-d H:i:s', time()-(3600*24)*30),
             'updated_at' => date('Y-m-d H:i:s', time()),
         ]);

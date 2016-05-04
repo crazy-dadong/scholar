@@ -18,7 +18,6 @@ $factory->define(App\Data\User::class, function (Faker\Generator $faker) {
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
         'is_admin' => mt_rand(0, 1),
-        'is_disabled' => mt_rand(0, 1),
         'created_at' => $faker->dateTimeBetween('-15 days', 'now'),
     ];
 });
