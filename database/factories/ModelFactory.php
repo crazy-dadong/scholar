@@ -55,6 +55,6 @@ $factory->define(App\Data\Task::class, function (Faker\Generator $faker) {
         'actually_started_at' => $faker->dateTimeBetween('-4 days', 'now'),
         'actually_end_at' => $faker->dateTimeBetween('-4 days', 'now'),
         'status' => mt_rand(0, 4),
-        'created_at' => $faker->dateTimeBetween('-10 days', '-8 days'),
+        'created_at' => $faker->dateTimeBetween('-10 days', 'now'),
     ];
 });
