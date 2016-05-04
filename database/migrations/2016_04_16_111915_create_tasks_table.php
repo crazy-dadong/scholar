@@ -24,6 +24,7 @@ class CreateTasksTable extends Migration
             $table->timestamp('actually_started_at');   //实际开始时间
             $table->timestamp('actually_end_at');       //实际结束事件
             $table->integer('status')->unsigned();      //0 未执行 1 执行中 2 完成 3未完成 4 修改
+            $table->softDeletes();
             $table->timestamps();
         });
     }

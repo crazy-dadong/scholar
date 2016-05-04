@@ -17,6 +17,7 @@ class CreateProjectsTable extends Migration
             $table->bigInteger('user_id');
             $table->string('name');
             $table->string('description');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
