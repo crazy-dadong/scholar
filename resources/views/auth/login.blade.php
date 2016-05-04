@@ -13,7 +13,7 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ URL::action('Home\IndexController@getIndex') }}"><b>Scholar</b>系统</a>
+        <a href="{{ URL::action('Welcome\IndexController@getIndex') }}"><b>Scholar</b>系统</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">

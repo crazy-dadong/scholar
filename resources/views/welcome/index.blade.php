@@ -14,7 +14,7 @@
         <nav class="navbar navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a href="{{ URL::action('Home\IndexController@getIndex') }}" class="navbar-brand"><b>Scholar</b>任务管理</a>
+                    <a href="{{ URL::action('Welcome\IndexController@getIndex') }}" class="navbar-brand"><b>Scholar</b>任务管理</a>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#navbar-collapse">
                         <i class="fa fa-bars"></i>

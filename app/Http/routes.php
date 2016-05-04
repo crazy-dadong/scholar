@@ -24,12 +24,13 @@ Route::group(['prefix'=>'admin'], function () {
 
 // 用户管理
 Route::group(['prefix'=>'user'], function () {
-    Route::controller('/', 'User\DashboardController');
+    Route::resource('/task/model', 'User\Task\ModelController');
+    Route::controller('/dashboard', 'User\DashboardController');
 });
 
 
 
 // 欢迎界面
 Route::group([], function () {
-    Route::get('/', 'Home\IndexController@getIndex');
+    Route::get('/', 'Welcome\IndexController@getIndex');
 });

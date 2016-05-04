@@ -47,7 +47,7 @@
 
                                 <p>
                                     {{ $user_name }}
-                                    <small>用户ID: {{ $user_name = auth()->user()['id'] }}</small>
+                                    <small>用户ID: {{ auth()->user()['id'] }}</small>
                                 </p>
                             </li>
                             <!-- Menu Footer-->
@@ -95,7 +95,11 @@
                 <li>
                     <a href="{{ URL::action('User\DashboardController@getIndex') }}">
                         <i class="fa fa-dashboard"></i> <span>控制台</span>
-                        <small class="label pull-right bg-red">3</small>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ URL::action('User\DashboardController@getIndex') }}">
+                        <i class="fa fa-folder"></i> <span>模块</span>
                     </a>
                 </li>
             </ul>

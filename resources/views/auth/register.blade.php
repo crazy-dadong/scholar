@@ -11,7 +11,7 @@
 <body class="hold-transition register-page" style="background-image: url('/img/welcome-bg.jpg')">
 <div class="register-box">
     <div class="register-logo">
-        <a href="{{ URL::action('Home\IndexController@getIndex') }}"><b>Scholar</b>系统</a>
+        <a href="{{ URL::action('Welcome\IndexController@getIndex') }}"><b>Scholar</b>系统</a>
     </div>
 
     <div class="register-box-body">
