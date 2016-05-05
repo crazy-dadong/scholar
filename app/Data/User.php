@@ -36,4 +36,34 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * 对项目一对多
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function projects()
+    {
+        return $this->hasMany('App\Data\Project');
+    }
+
+    /**
+     * 对模块一对多
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function modules()
+    {
+        return $this->hasMany('App\Data\Module');
+    }
+
+    /**
+     * 对任务一对多
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany('App\Data\Task');
+    }
 }
