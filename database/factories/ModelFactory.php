@@ -24,7 +24,7 @@ $factory->define(App\Data\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Data\Project::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => mt_rand(1, 1000),
+        'user_id' => 1,
         'name' => $faker->title,
 //        'description' => $faker->paragraphs(mt_rand(3, 6)),
 
@@ -35,8 +35,8 @@ $factory->define(App\Data\Project::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Data\Module::class, function (Faker\Generator $faker) {
     return [
-        'user_id' => mt_rand(1, 1000),
-        'project_id' => mt_rand(1, 1000),
+        'user_id' => 1,
+        'project_id' => mt_rand(1, 2),
         'name' => $faker->title,
         'description' => $faker->text,
         'created_at' => $faker->dateTimeBetween('-10 days', 'now'),
@@ -45,8 +45,8 @@ $factory->define(App\Data\Module::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Data\Task::class, function (Faker\Generator $faker) {
     return [
-        'module_id' => mt_rand(1, 5000),
-        'user_id' => mt_rand(1, 1000),
+        'user_id' => 1,
+        'module_id' => mt_rand(1, 5),
         'name' => $faker->title,
         'description' => $faker->text,
         'plan_started_at' => $faker->dateTimeBetween('-10 days', 'now'),

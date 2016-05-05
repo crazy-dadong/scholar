@@ -18,7 +18,7 @@ class AuthWelcome
     {
 
         if (Auth::check()) {
-            return redirect()->action('User\DashboardController@getIndex');
+            return redirect()->action('User\Dashboard\DashboardController@getIndex');
         }else{
             return $next($request);
         }

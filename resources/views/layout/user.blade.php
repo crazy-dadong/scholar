@@ -17,7 +17,7 @@
 <div class="wrapper">
     <header class="main-header">
         <!-- Logo -->
-        <a href="{{ URL::action('User\DashboardController@getIndex') }}" class="logo">
+        <a href="{{ URL::action('User\Dashboard\DashboardController@getIndex') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>S</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -93,12 +93,12 @@
             <ul class="sidebar-menu">
                 <li class="header">导航</li>
                 <li>
-                    <a href="{{ URL::action('User\DashboardController@getIndex') }}">
+                    <a href="{{ URL::action('User\Dashboard\DashboardController@getIndex') }}">
                         <i class="fa fa-dashboard"></i> <span>控制台</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ URL::action('User\DashboardController@getIndex') }}">
+                    <a href="{{ URL::action('User\Dashboard\DashboardController@getIndex') }}">
                         <i class="fa fa-folder"></i> <span>模块</span>
                     </a>
                 </li>

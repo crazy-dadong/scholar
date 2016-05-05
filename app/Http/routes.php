@@ -24,8 +24,9 @@ Route::group(['prefix'=>'admin'], function () {
 
 // 用户管理
 Route::group(['prefix'=>'user'], function () {
+    Route::controller('/dashboard', 'User\Dashboard\DashboardController');
     Route::resource('/task/model', 'User\Task\ModelController');
-    Route::controller('/dashboard', 'User\DashboardController');
+    Route::resource('/task/task', 'User\Task\TaskController');
 });
 
 

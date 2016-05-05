@@ -20,7 +20,7 @@ class UserTableSeeder extends Seeder
             'created_at' => date('Y-m-d H:i:s', time()-(3600*24)*30),
             'updated_at' => date('Y-m-d H:i:s', time()),
         ]);
-        factory('App\Data\User', 999)->create();
+        factory('App\Data\User', 99)->create();
 
     }
 }

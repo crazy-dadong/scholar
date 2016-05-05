@@ -31,7 +31,7 @@
 
                         {{-- 登录按钮 --}}
                         <li>
-                            <a href="{{ URL::action('Auth\AuthController@getLogin') }}">登录</a>
+                            <a href="{{ URL::action('Auth\AuthController@getLogin') }}"><i class="ion ion-log-in"></i>登录</a>
                         </li>
                     </ul>
                 </div>
@@ -50,10 +50,11 @@
                 <p class="text-center  col-md-6 col-md-offset-3">
                     现代生活喧嚣繁杂，Scholar帮你轻松简化一切，让生活更美好，让工作更省力。
                 </p>
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-6 col-md-offset-3">
                     <div class="row">
                         <div class="col-md-6">
                             <p class="text-center">
+                                <i class="ion ion-ios-people-outline"></i>
                                 {{ $userCount }}
                                 <i class="ion ion-arrow-graph-up-right"></i>
                                 {{ $userNew }}

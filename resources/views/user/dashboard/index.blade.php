@@ -11,7 +11,7 @@
             <small>控制面板</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ URL::action('User\DashboardController@getIndex') }}"><i class="fa fa-dashboard"></i>
+            <li><a href="{{ URL::action('User\Dashboard\DashboardController@getIndex') }}"><i class="fa fa-dashboard"></i>
                     任务系统</a></li>
             <li class="active">控制台</li>
         </ol>

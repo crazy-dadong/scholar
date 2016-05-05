@@ -11,6 +11,6 @@ class ModuleTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Data\Module', 5000)->create();
+        factory('App\Data\Module', 5)->create();
     }
 }
