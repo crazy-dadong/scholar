@@ -13,12 +13,26 @@ use App\Data\User;
 
 class DashboardController extends Controller
 {
+    /**
+     * 用户控制台页面
+     *
+     * @param Request $request
+     *
+     * @return mixed
+     */
     public function getIndex(Request $request)
     {
+//        $user = $request->user();
+//        $tasks = Task::where('user_id', $user['id'])->get();
+//        dd($tasks);
+
         $user = $request->user();
-        $tasks = Task::where('user_id', $user['id'])->get();
-        dd($tasks);
-//        return view('user.dashboard.index');
+        $tasks = Task::where('user_id', $user['id'])->paginate(15);
+//        $tasks = DB::table('tasks')->simplePaginate(3);
+
+        return view('user.dashboard.index', [
+            'tasks' => $tasks,
+        ]);
     }
 
 }

@@ -26,7 +26,8 @@ Route::group(['prefix'=>'admin'], function () {
 Route::group(['prefix'=>'user'], function () {
     Route::controller('/dashboard', 'User\Dashboard\DashboardController');
     Route::resource('/task/model', 'User\Task\ModelController');
-    Route::resource('/task/task', 'User\Task\TaskController');
+    Route::controller('/task/task', 'User\Task\TaskController');
+    Route::controller('/task/work', 'User\Task\WorkController');
 });
 
 
