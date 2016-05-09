@@ -45,6 +45,7 @@ class WorkController extends Controller
 
         $task->model_name = $model->name;
         $task->project_name = $project->name;
-        dd($task);
+
+        //TODO 输出页面
     }
 }
