@@ -11,7 +11,8 @@
     "php": ">=5.5.9",
     "laravel/framework": "5.1.*",
     "barryvdh/laravel-ide-helper": "v2.1.4",
-    "barryvdh/laravel-debugbar": "^2.2"
+    "barryvdh/laravel-debugbar": "^2.2",
+    "predis/predis": "^1.0"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",
@@ -42,10 +43,14 @@
     ],
     "post-install-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postInstall",
+      "php artisan clear-compiled",
+      "php artisan ide-helper:generate",
       "php artisan optimize"
     ],
     "post-update-cmd": [
       "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+      "php artisan clear-compiled",
+      "php artisan ide-helper:generate",
       "php artisan optimize"
     ]
   },
