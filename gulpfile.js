@@ -52,5 +52,6 @@ elixir(function(mix) {
         mix.copy('resources/bower_components/AdminLTE/plugins/iCheck', 'public/plugins/iCheck');
         mix.copy('resources/bower_components/font-awesome/fonts', 'public/build/fonts');
         mix.copy('resources/bower_components/Ionicons/fonts', 'public/build/fonts');
+        mix.copy('resources/bower_components/AdminLTE/plugins/bootstrap-wysihtml5/', 'public/plugins/bootstrap-wysihtml5');
     });
 });

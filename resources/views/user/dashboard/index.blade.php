@@ -1,7 +1,7 @@
 @extends('layout.user')
 
 @section('css')
-    <link rel="stylesheet" href="/plugins/iCheck/all.css">
+    <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js">
 @endsection
 
 @section('content-wrapper')

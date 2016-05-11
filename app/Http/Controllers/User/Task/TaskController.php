@@ -12,18 +12,18 @@ class TaskController extends Controller
 
     /**
      * 任务 完成
-     * @param Request $request
      */
-    public function postFinish(Request $request)
+    public function getFinish()
     {
 
+        echo "ok";
     }
 
     /**
      * 任务取消
      * @param Request $request
      */
-    public function postCancel(Request $request)
+    public function getCancel(Request $request)
     {
 
     }

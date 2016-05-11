@@ -46,6 +46,8 @@ class WorkController extends Controller
         $task->model_name = $model->name;
         $task->project_name = $project->name;
 
-        //TODO 输出页面
+        return view('user.task.work.index', [
+            'task' => $task,
+        ]);
     }
 }

@@ -15,6 +15,6 @@ class ModelController extends Controller
      */
     public function postDefault(Request $request)
     {
-
+        dd("hello word");
     }
 }
