@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->boolean('is_admin');
-            $table->bigInteger('default_model_id')->default(0);  //默认模块
+            $table->bigInteger('default_module_id')->default(0);  //默认模块
             $table->bigInteger('task_id')->default(0);  //如果为0 则当前没有正在工作的内容
             $table->timestamp('task_begin_at')->default(0);
             $table->rememberToken();
