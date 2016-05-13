@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    @yield('meta')
     <title>@section('title')This is the master sidebar.@show</title>
     <link rel="stylesheet" href="{{ elixir('css/core.css') }}"/>
     @section('css')
     @show
     <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="hold-transition skin-blue sidebar-collapse sidebar-mini">
@@ -56,7 +57,8 @@
                                     <a href="#" class="btn btn-default btn-flat">用户主页</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ URL::action('Auth\AuthController@getLogout') }}" class="btn btn-default btn-flat">退出</a>
+                                    <a href="{{ URL::action('Auth\AuthController@getLogout') }}"
+                                       class="btn btn-default btn-flat">退出</a>
                                 </div>
                             </li>
                         </ul>
@@ -116,7 +118,8 @@
         </div>
         <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
         reserved.
-    </footer> -->
+    </footer>
+    -->
 </div>
 
 <script src="{{ elixir('js/core.js') }}"></script>

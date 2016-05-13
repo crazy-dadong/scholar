@@ -1,5 +1,9 @@
 @extends('layout.user')
 
+@section('meta')
+    <!--suppress JSUnresolvedFunction -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
 
 @section('content-wrapper')
     <section class="content-header">
@@ -160,15 +164,24 @@
 
 @section('js')
     <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        // 快速创建任务
         $("#fast-create-btn").bind("click", function () {
             var fastCreateTaskName = $("#fast-create-task-name").val();
 
             $.post("{{ action('User\Task\TaskController@postFastCreate') }}",
                     {
-                        mame : fastCreateTaskName
+                        name: fastCreateTaskName
                     },
                     function (data, status) {
-                        alert("Data: " + data + "\nStatus: " + status);
+                        if(status == "success"){
+                            location.reload();
+                        }
                     }
             );
         });

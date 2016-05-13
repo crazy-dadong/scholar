@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Controller extends BaseController
 {
+    /** @var  用户 */
     protected $user;
 
     public function __construct()
