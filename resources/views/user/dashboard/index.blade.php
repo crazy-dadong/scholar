@@ -38,9 +38,9 @@
                                         data-toggle="tooltip"
                                         title="详细" data-original-title="详细">
                                     <i class="fa fa-plus"></i></button>
-                                <button id="" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="继续"
+                                <a href="{{ action('User\Task\WorkController@getIndex') }}" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="继续"
                                         data-original-title="继续">
-                                    <i class="fa fa-play"></i></button>
+                                    <i class="fa fa-play"></i></a>
                                 <button type="button" class="btn btn-box-tool" data-widget="remove"
                                         data-toggle="tooltip"
                                         title="取消" data-original-title="取消">

@@ -32,13 +32,15 @@ class WorkController extends Controller
                 $user->save();
 
 
-            }elseif ($user->task_id != $request->task_id){
+            } elseif ($user->task_id != $request->task_id) {
                 /** 当前提交的任务与正在执行的任务不匹配 警告 */
                 abort(505);
             }
+        } else {
+
         }
 
-        $task = Task::find($request->task_id);
+        $task = Task::find($user->task_id);
 
         $model = Module::find($task->module_id);
         $project = Project::find($model->project_id);
