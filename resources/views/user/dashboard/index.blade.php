@@ -38,8 +38,9 @@
                                         data-toggle="tooltip"
                                         title="详细" data-original-title="详细">
                                     <i class="fa fa-plus"></i></button>
-                                <a href="{{ action('User\Task\WorkController@getIndex') }}" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="继续"
-                                        data-original-title="继续">
+                                <a href="{{ action('User\Task\WorkController@getIndex') }}" type="button"
+                                   class="btn btn-box-tool" data-toggle="tooltip" title="继续"
+                                   data-original-title="继续">
                                     <i class="fa fa-play"></i></a>
                                 <button type="button" class="btn btn-box-tool" data-widget="remove"
                                         data-toggle="tooltip"
@@ -55,56 +56,38 @@
             @endif
 
             <div class="col-md-3">
-                <div class="box box-solid">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">工作</h3>
+                @foreach($projects as $project)
+                    <div class="box box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">{{ $project->name }}</h3>
 
-                        <div class="box-tools">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
+                            <div class="box-tools">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="box-body no-padding">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li class="active"><a href="#"><i class="fa fa-inbox"></i> Inbox
-                                    <span class="label label-primary pull-right">12</span></a></li>
-                            <li><a href="#"><i class="fa fa-envelope-o"></i> Sent</a></li>
-                            <li><a href="#"><i class="fa fa-file-text-o"></i> Drafts</a></li>
-                            <li><a href="#"><i class="fa fa-filter"></i> Junk <span
-                                            class="label label-warning pull-right">65</span></a>
-                            </li>
-                            <li><a href="#"><i class="fa fa-trash-o"></i> Trash</a></li>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /. box -->
-                <div class="box box-solid">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">学习</h3>
-
-                        <div class="box-tools">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                        class="fa fa-minus"></i>
-                            </button>
+                        <div class="box-body no-padding">
+                            <ul class="nav nav-pills nav-stacked">
+                                @foreach($modules as $module)
+                                    @if($module->project_id == $project->id)
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-circle-o text-green"></i> {{ $module->name }}
+                                                <span class="label label-primary pull-right">{{ $module }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
                         </div>
+                        <!-- /.box-body -->
                     </div>
-                    <div class="box-body no-padding">
-                        <ul class="nav nav-pills nav-stacked">
-                            <li><a href="#"><i class="fa fa-circle-o text-red"></i> Important</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
-                        </ul>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
+                    <!-- /.box -->
+                @endforeach
             </div>
             <!-- /.col -->
             <div class="col-md-9">
-
-
                 <div class="input-group input-group-lg" style="margin-bottom: 20px">
                     <span class="input-group-addon">新任务</span>
                     <input id="fast-create-task-name" type="text" class="form-control" title="任务名称">
@@ -155,10 +138,6 @@
                         </table>
                     </div>
                     <!-- /.box-body -->
-
-                    <div class="box-footer clearfix">
-                        {!! $tasks->render() !!}
-                    </div>
                 </div>
                 <!-- /. box -->
             </div>

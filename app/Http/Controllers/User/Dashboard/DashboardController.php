@@ -31,16 +31,25 @@ class DashboardController extends Controller
             $execTask = null;
         }
 
-        $tasks = Task::where('user_id', $user['id'])
+        $tasks = Task::where('user_id', $user->id)
             ->where('plan_started_at', '>', Carbon::today())
             ->where('plan_started_at', '<', Carbon::tomorrow())
             ->where('status', 0)
             ->orderBy('plan_started_at')
-            ->paginate(15);
+            ->get();
+
+
+        $projects = Project::where('user_id', $user->id)->get();
+        $modules = Module::where('user_id', $user->id)->get();
+
+        // 获取模块下有多少需要执行的任务
+
 
         return view('user.dashboard.index', [
             'tasks' => $tasks,
             'execTask' => $execTask,
+            'projects' => $projects,
+            'modules' => $modules,
         ]);
     }
 

@@ -45,9 +45,12 @@ class WorkController extends Controller
         $model = Module::find($task->module_id);
         $project = Project::find($model->project_id);
 
+        // 合并 任务
         $task->model_name = $model->name;
         $task->project_name = $project->name;
         $task->task_begin_at = $user->task_begin_at;
+
+
 
         return view('user.task.work.index', [
             'task' => $task,
