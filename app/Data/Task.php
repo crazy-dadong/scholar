@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string name
  * @property int user_id
  * @property string plan_started_at
- * @property int model_id 模块id
+ * @property int module_id
  */
 class Task extends Model
 {

@@ -23,29 +23,36 @@
     <section class="content">
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="box box-warning collapsed-box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">你正在执行：我真的还想再活五百年</h3>
+            @if($execTask)
+                <div class="col-md-12">
+                    <div class="box box-warning collapsed-box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">
+                                <span>您正在执行：</span>
+                                {{ $execTask->name }}
+                            </h3>
 
-                        <div class="box-tools pull-right">
+                            <div class="box-tools pull-right">
 
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                                    title="详细" data-original-title="详细">
-                                <i class="fa fa-plus"></i></button>
-                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="继续"
-                                    data-original-title="继续">
-                                <i class="fa fa-play"></i></button>
-                            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
-                                    title="取消" data-original-title="取消">
-                                <i class="fa fa-times"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"
+                                        data-toggle="tooltip"
+                                        title="详细" data-original-title="详细">
+                                    <i class="fa fa-plus"></i></button>
+                                <button id="" type="button" class="btn btn-box-tool" data-toggle="tooltip" title="继续"
+                                        data-original-title="继续">
+                                    <i class="fa fa-play"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"
+                                        data-toggle="tooltip"
+                                        title="取消" data-original-title="取消">
+                                    <i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body" style="display: none;">
+                            <p>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</p>
                         </div>
                     </div>
-                    <div class="box-body" style="display: none;">
-                        <p>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</p>
-                    </div>
                 </div>
-            </div>
+            @endif
 
             <div class="col-md-3">
                 <div class="box box-solid">
@@ -179,7 +186,7 @@
                         name: fastCreateTaskName
                     },
                     function (data, status) {
-                        if(status == "success"){
+                        if (status == "success") {
                             location.reload();
                         }
                     }

@@ -56,17 +56,19 @@ class TaskController extends Controller
     public function postFastCreate(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:posts|max:255',
+            'name' => 'required|unique:tasks|max:255',
         ]);
-        
+
         $taskName = $request->input('name');
 
         $task = new Task();
         $task->name = $taskName;
         $task->user_id = $this->user->id;
-        $task->model_id = $this->user->default_model_id;
+        $task->module_id = $this->user->default_module_id;
         $task->plan_started_at = Carbon::now();
-        $task->save();
+        if (!$task->save()) {
+            abort(500);
+        }
 
     }
 
