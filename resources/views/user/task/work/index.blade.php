@@ -42,7 +42,7 @@
                                 <h3 class="box-title">{{ $task->name }}</h3>
                                 <!-- tools box -->
                                 <div class="pull-right box-tools">
-                                    <button type="button" class="btn btn-info btn-sm" data-widget="remove"
+                                    <button id="remove" type="button" class="btn btn-info btn-sm" data-widget="remove"
                                             data-toggle="tooltip" title="Remove">
                                         <i class="fa fa-times"></i></button>
                                 </div>
@@ -50,14 +50,16 @@
                             </div>
                             <div class="box-body">
                                 <form action="#" method="post">
-                                    {{--<div class="form-group">--}}
-                                    {{--<input type="email" class="form-control" name="emailto" placeholder="Email to:">--}}
-                                    {{--</div>--}}
+                                    <div class="form-group">
+                                        <label for="ask-begin-at">开始时间</label>
+                                        <input id="task-begin-at" readonly="readonly" type="datetime" class="form-control" name="task_begin_at" value="{{ $task->task_begin_at }}">
+                                    </div>
                                     <div>
                                         <textarea class="textarea"
                                                   readonly="readonly"
                                                   title="任务描述">{{ $task->description }}</textarea>
                                     </div>
+
                                 </form>
                             </div>
                             <div class="box-footer clearfix">
@@ -82,7 +84,9 @@
         $(document).ready(function () {
             $("#finish").bind("click", function () {
                 $.get("{{ URL::action('User\Task\TaskController@getFinish') }}",function(data,status){
-                    alert("Data: " + data + "\nStatus: " + status);
+                    if(status == 'success'){
+                        location.href = '{{ action('User\Dashboard\DashboardController@getIndex') }}';
+                    }
                 });
             });
         });

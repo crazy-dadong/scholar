@@ -1,8 +1,5 @@
 @extends('layout.user')
 
-@section('css')
-    <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js">
-@endsection
 
 @section('content-wrapper')
     <section class="content-header">
@@ -20,10 +17,33 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-3">
-                <button id="new-tasks" class="btn btn-primary btn-block margin-bottom">新任务</button>
 
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-warning collapsed-box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">你正在执行：我真的还想再活五百年</h3>
+
+                        <div class="box-tools pull-right">
+
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                    title="详细" data-original-title="详细">
+                                <i class="fa fa-plus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="继续"
+                                    data-original-title="继续">
+                                <i class="fa fa-play"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
+                                    title="取消" data-original-title="取消">
+                                <i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body" style="display: none;">
+                        <p>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
                 <div class="box box-solid">
                     <div class="box-header with-border">
                         <h3 class="box-title">工作</h3>
@@ -72,9 +92,21 @@
             </div>
             <!-- /.col -->
             <div class="col-md-9">
+
+
+                <div class="input-group input-group-lg" style="margin-bottom: 20px">
+                    <span class="input-group-addon">新任务</span>
+                    <input id="fast-create-task-name" type="text" class="form-control" title="任务名称">
+                    <div class="input-group-btn">
+                        <button id="fast-create-btn" type="button" class="btn btn-primary"><i class="fa fa-flash"></i>
+                        </button>
+                        <a type="button" class="btn btn-primary">向导</a>
+                    </div>
+                </div>
+
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">Responsive Hover Table</h3>
+                        <h3 class="box-title">任务单</h3>
 
                         <div class="box-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
@@ -82,7 +114,8 @@
                                        placeholder="Search">
 
                                 <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    <button type="submit" class="btn btn-default"><i
+                                                class="fa fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -92,19 +125,19 @@
                         <table class="table table-hover">
                             <tbody>
                             <tr>
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Reason</th>
-                                <th>Action</th>
+                                <th>任务名称</th>
+                                <th>开始日期</th>
+                                <th>状态</th>
+                                <th>操作</th>
                             </tr>
                             @foreach($tasks as $task)
                                 <tr>
                                     <td>{{ $task->name }}</td>
-                                    <td>{{ $task->actually_end_at }}</td>
-                                    <td><span class="label label-success">Approved</span></td>
-                                    <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    <td><a href="{{ URL::action('User\Task\WorkController@getIndex', ['task_id' => $task->id]) }}" class="btn btn-primary margin-bottom">执行</a></td>
+                                    <td>{{ $task->plan_started_at }}</td>
+                                    <td><span class="label label-success">待执行</span></td>
+                                    <td>
+                                        <a href="{{ URL::action('User\Task\WorkController@getIndex', ['task_id' => $task->id]) }}"
+                                           class="btn btn-primary btn-sm">执行</a></td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -113,13 +146,6 @@
                     <!-- /.box-body -->
 
                     <div class="box-footer clearfix">
-                        <ul class="pagination pull-right">
-                            <li><a href="#">«</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">»</a></li>
-                        </ul>
                         {!! $tasks->render() !!}
                     </div>
                 </div>
@@ -132,53 +158,19 @@
     <!-- /.content -->
 @endsection
 
-
 @section('js')
+    <script type="text/javascript">
+        $("#fast-create-btn").bind("click", function () {
+            var fastCreateTaskName = $("#fast-create-task-name").val();
 
-    <script src="/plugins/iCheck/icheck.min.js"></script>
-    <script>
-        $(function () {
-            //Enable iCheck plugin for checkboxes
-            //iCheck for checkbox and radio inputs
-            $('.mailbox-messages input[type="checkbox"]').iCheck({
-                checkboxClass: 'icheckbox_flat-blue',
-                radioClass: 'iradio_flat-blue'
-            });
-
-            //Enable check and uncheck all functionality
-            $(".checkbox-toggle").click(function () {
-                var clicks = $(this).data('clicks');
-                if (clicks) {
-                    //Uncheck all checkboxes
-                    $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
-                    $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
-                } else {
-                    //Check all checkboxes
-                    $(".mailbox-messages input[type='checkbox']").iCheck("check");
-                    $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
-                }
-                $(this).data("clicks", !clicks);
-            });
-
-            //Handle starring for glyphicon and font awesome
-            $(".mailbox-star").click(function (e) {
-                e.preventDefault();
-                //detect type
-                var $this = $(this).find("a > i");
-                var glyph = $this.hasClass("glyphicon");
-                var fa = $this.hasClass("fa");
-
-                //Switch states
-                if (glyph) {
-                    $this.toggleClass("glyphicon-star");
-                    $this.toggleClass("glyphicon-star-empty");
-                }
-
-                if (fa) {
-                    $this.toggleClass("fa-star");
-                    $this.toggleClass("fa-star-o");
-                }
-            });
+            $.post("{{ action('User\Task\TaskController@postFastCreate') }}",
+                    {
+                        mame : fastCreateTaskName
+                    },
+                    function (data, status) {
+                        alert("Data: " + data + "\nStatus: " + status);
+                    }
+            );
         });
     </script>
 @endsection

@@ -25,7 +25,7 @@ $factory->define(App\Data\User::class, function (Faker\Generator $faker) {
 $factory->define(App\Data\Project::class, function (Faker\Generator $faker) {
     return [
         'user_id' => 1,
-        'name' => $faker->title,
+        'name' => $faker->word,
 //        'description' => $faker->paragraphs(mt_rand(3, 6)),
 
         'description' => $faker->text,
@@ -37,7 +37,7 @@ $factory->define(App\Data\Module::class, function (Faker\Generator $faker) {
     return [
         'user_id' => 1,
         'project_id' => mt_rand(1, 2),
-        'name' => $faker->title,
+        'name' => $faker->word,
         'description' => $faker->text,
         'created_at' => $faker->dateTimeBetween('-10 days', 'now'),
     ];
@@ -47,13 +47,11 @@ $factory->define(App\Data\Task::class, function (Faker\Generator $faker) {
     return [
         'user_id' => 1,
         'module_id' => mt_rand(1, 5),
-        'name' => $faker->title,
+        'name' => $faker->word,
         'description' => $faker->text,
-        'plan_started_at' => $faker->dateTimeBetween('-10 days', 'now'),
+        'plan_started_at' => $faker->dateTimeBetween('-2 days', '+3 days'),
         'plan_end_at' => $faker->dateTimeBetween('-10 days', 'now'),
         'priority' => mt_rand(0, 3),
-        'actually_started_at' => $faker->dateTimeBetween('-4 days', 'now'),
-        'actually_end_at' => $faker->dateTimeBetween('-4 days', 'now'),
         'status' => mt_rand(0, 4),
         'created_at' => $faker->dateTimeBetween('-10 days', 'now'),
     ];

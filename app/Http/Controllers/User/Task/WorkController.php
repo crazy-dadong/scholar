@@ -6,11 +6,10 @@ use App\Data\Module;
 use App\Data\Project;
 use App\Data\Task;
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\Controller;
 
 class WorkController extends Controller
 {
@@ -18,15 +17,16 @@ class WorkController extends Controller
      * 工作执行界面
      *
      * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function getIndex(Request $request)
     {
+        $user = $this->user;
         // 判断是否执行新的任务
         if (isset($request->task_id)) {
 
-            $user = $request->user();
             /** 执行新任务 */
-            if ($user->task_id == 0) {
+            if ($user->task_id == 0 || $user->task_id == $request->task_id) {
                 $user->task_id = $request->task_id;
                 $user->task_begin_at = Carbon::now();
                 $user->save();
@@ -45,6 +45,7 @@ class WorkController extends Controller
 
         $task->model_name = $model->name;
         $task->project_name = $project->name;
+        $task->task_begin_at = $user->task_begin_at;
 
         return view('user.task.work.index', [
             'task' => $task,
