@@ -31,6 +31,11 @@ class TaskController extends Controller
         $user->save();
     }
 
+    public function getCreate()
+    {
+        return view('user.task.task.create');
+    }
+
     /**
      * 任务取消
      */
@@ -69,6 +74,14 @@ class TaskController extends Controller
         if (!$task->save()) {
             abort(500);
         }
+    }
+
+    /**
+     * 创建任务
+     * @param Request $request
+     */
+    public function postCreate(Request $request)
+    {
 
     }
 

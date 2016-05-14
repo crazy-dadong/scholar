@@ -21,36 +21,30 @@ class WorkController extends Controller
      */
     public function getIndex(Request $request)
     {
-        $user = $this->user;
-        // 判断是否执行新的任务
-        if (isset($request->task_id)) {
-
-            /** 执行新任务 */
-            if ($user->task_id == 0 || $user->task_id == $request->task_id) {
-                $user->task_id = $request->task_id;
-                $user->task_begin_at = Carbon::now();
-                $user->save();
-
-
-            } elseif ($user->task_id != $request->task_id) {
-                /** 当前提交的任务与正在执行的任务不匹配 警告 */
-                abort(505);
+        // 如果有正在执行的任务
+        if($this->user->task_id){
+            // !
+            if($this->user->task_id != $request->task_id){
+                abort(500);
             }
-        } else {
-
+        }else{
+            /** 执行新任务 */
+            if ($this->user->task_id == 0 || $this->user->task_id == $request->task_id) {
+                $this->user->task_id = $request->task_id;
+                $this->user->task_begin_at = Carbon::now();
+                $this->user->save();
+            }
         }
 
-        $task = Task::find($user->task_id);
+        $task = Task::find($this->user->task_id);
 
         $model = Module::find($task->module_id);
         $project = Project::find($model->project_id);
 
-        // 合并 任务
+        // 任务
         $task->model_name = $model->name;
         $task->project_name = $project->name;
-        $task->task_begin_at = $user->task_begin_at;
-
-
+        $task->task_begin_at = $this->user->task_begin_at;
 
         return view('user.task.work.index', [
             'task' => $task,

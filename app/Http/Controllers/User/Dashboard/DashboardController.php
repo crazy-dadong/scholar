@@ -40,9 +40,6 @@ class DashboardController extends Controller
         $projects = Project::where('user_id', $user->id)->get();
         $modules = Module::where('user_id', $user->id)->get();
 
-        // 获取模块下有多少需要执行的任务
-
-
         return view('user.dashboard.index', [
             'tasks' => $tasks,
             'execTask' => $execTask,
