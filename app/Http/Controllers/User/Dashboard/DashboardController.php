@@ -10,8 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Data\Project;
 use App\Data\Module;
 use App\Data\Task;
-use App\Data\User;
-
 class DashboardController extends Controller
 {
     /**

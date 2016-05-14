@@ -53,9 +53,11 @@
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                <div class="pull-left">
-                                    <a href="#" class="btn btn-default btn-flat">用户主页</a>
-                                </div>
+                                @can('auth-admin')
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">后台</a>
+                                    </div>
+                                @endcan
                                 <div class="pull-right">
                                     <a href="{{ URL::action('Auth\AuthController@getLogout') }}"
                                        class="btn btn-default btn-flat">退出</a>
