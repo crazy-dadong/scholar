@@ -19,7 +19,8 @@ Route::controller('auth', 'Auth\AuthController');
 
 // 后台管理
 Route::group(['prefix'=>'admin'], function () {
-    Route::controller('/', 'Admin\Dashboard\IndexController');
+    Route::controller('/dashboard', 'Admin\Dashboard\IndexController');
+    Route::controller('/user', 'Admin\Dashboard\IndexController');
 });
 
 // 用户管理
