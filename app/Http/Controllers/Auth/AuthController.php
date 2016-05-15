@@ -135,6 +135,7 @@ class AuthController extends Controller
 
         return redirect($this->redirectPath());
     }
+    
 
     public function getToken(Request $request)
     {
@@ -147,9 +148,8 @@ class AuthController extends Controller
 
         //TODO 过期时间
 //        session(['email_created_at'=> $emailToken]);
-        Mail::raw("邮箱验证码： {$emailToken}", function ($message) use ($email) {
-            $to = $email;
-            $message->to($to)->subject('欢迎使用 Scholar');
+        Mail::send('emails.register', ['emailToken' => $emailToken], function ($message) use ($email) {
+            $message->to($email)->subject('欢迎使用 Scholar');
         });
         return ['status', 'success'];
     }
