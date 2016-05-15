@@ -55,7 +55,7 @@
                             <li class="user-footer">
                                 @can('auth-admin')
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">后台</a>
+                                        <a href="{{ action('Admin\Dashboard\IndexController@getIndex') }}" class="btn btn-default btn-flat">后台</a>
                                     </div>
                                 @endcan
                                 <div class="pull-right">
