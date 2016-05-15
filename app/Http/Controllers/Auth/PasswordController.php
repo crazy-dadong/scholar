@@ -21,6 +21,11 @@ class PasswordController extends Controller
     use ResetsPasswords;
 
     /**
+     * 登录重定向目录
+     */
+    protected $redirectPath;
+
+    /**
      * Create a new password controller instance.
      *
      * @return void

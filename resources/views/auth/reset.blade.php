@@ -8,60 +8,49 @@
     <link rel="stylesheet" href="{{ elixir('css/core.css') }}"/>
     <link rel="stylesheet" href="/plugins/iCheck/all.css">
 </head>
-
-<body class="hold-transition login-page" style="background-image: url('/img/welcome-bg.jpg')">
-
-<div class="login-box">
-    <div class="login-logo">
+<body class="hold-transition register-page" style="background-image: url('/img/welcome-bg.jpg')">
+<div class="register-box">
+    <div class="register-logo">
         <a href="{{ URL::action('Welcome\IndexController@getIndex') }}"><b>Scholar</b>系统</a>
     </div>
-    <!-- /.login-logo -->
-    <div class="login-box-body">
-        <p class="login-box-msg">
+
+    <div class="register-box-body">
 
         @if (count($errors) > 0)
             @foreach ($errors->all() as $error)
                 <p class="callout callout-danger">{{ $error }}</p>
             @endforeach
         @else
-            <p class="login-box-msg ">请登录</p>
-            @endif
-        </p>
+            <p class="login-box-msg ">重置密码</p>
+        @endif
 
-        <form method="POST" action="/auth/login">
+        <form action="{{ URL::action('Auth\PasswordController@postReset') }}" method="post">
             {!! csrf_field() !!}
+            <input type="hidden" name="token" value="{{ $token }}">
+
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" name="email" placeholder="邮箱">
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="邮箱">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
+
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" name="password" placeholder="密码">
+                <input type="password" name="password" class="form-control" placeholder="新密码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
-            <div class="row">
-                <div class="col-xs-8">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input type="checkbox" name="remember"> 记住我
-                        </label>
-                    </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">登录</button>
-                </div>
-                <!-- /.col -->
+
+            <div class="form-group has-feedback">
+                <input type="password" name="password_confirmation" class="form-control" placeholder="密码">
+                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-flat">重置密码</button>
+
         </form>
 
-
-        <a href="{{ action('Auth\PasswordController@getEmail') }}">忘记密码</a><br>
-        <a href="{{ URL::action('Auth\AuthController@getRegister') }}" class="text-center">注册新用户</a>
-
     </div>
-    <!-- /.login-box-body -->
+    <!-- /.form-box -->
 </div>
-
+<!-- /.register-box -->
 
 <script src="{{ elixir('js/core.js') }}"></script>
 <script src="/plugins/iCheck/icheck.min.js"></script>
