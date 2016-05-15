@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller as BaseController;
+use Auth;
 
 class Controller extends BaseController
 {
