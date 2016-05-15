@@ -102,7 +102,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{ URL::action('User\Dashboard\DashboardController@getIndex') }}">
+                    <a href="{{ URL::action('Admin\User\IndexController@getIndex') }}">
                         <i class="fa fa-folder"></i> <span>模块</span>
                     </a>
                 </li>
