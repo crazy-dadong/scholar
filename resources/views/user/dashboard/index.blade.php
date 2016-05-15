@@ -142,7 +142,7 @@
                                 <tr class="task-list" data-href="{{ URL::action('User\Task\WorkController@getIndex', ['task_id' => $task->id]) }}">
                                     <td>{{ $task->name }}</td>
                                     <td>
-                                        <span class="label label-success">{{ $module->find($task->module_id)->name }}</span>
+                                        <span class="label label-success">{{ $modules->find($task->module_id)->name }}</span>
                                     </td>
                                     <td>{{ $task->plan_started_at }}</td>
                                 </tr>
