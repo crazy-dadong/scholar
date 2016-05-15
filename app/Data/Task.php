@@ -12,6 +12,9 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Task extends Model
 {
+
+    protected $fillable = ['user_id', 'name', 'description', 'module_id', 'plan_started_at', 'plan_end_at', 'priority', 'status'];
+
     /**
      * 对用户的一对一
      *

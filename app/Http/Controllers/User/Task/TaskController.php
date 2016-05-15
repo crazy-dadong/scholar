@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User\Task;
 
+use App\Data\Module;
 use App\Data\Task;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -33,7 +34,14 @@ class TaskController extends Controller
 
     public function getCreate()
     {
-        return view('user.task.task.create');
+        // 获取模块列表
+        $modules = Module::where('user_id',$this->user->id)->get();
+        $defaultModuleId = $this->user->default_module_id;
+
+        return view('user.task.task.create', [
+            'modules' => $modules,
+            'defaultModuleId' => $defaultModuleId,
+        ]);
     }
 
     /**
@@ -79,10 +87,16 @@ class TaskController extends Controller
     /**
      * 创建任务
      * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function postCreate(Request $request)
     {
+        $data = $request->all();
+        $data['user_id'] = $this->user->id;
+        $task = new Task();
+        $task->create($data);
 
+        return redirect()->action('User\Dashboard\DashboardController@getIndex');
     }
 
 }

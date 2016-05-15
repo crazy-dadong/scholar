@@ -1,179 +1,145 @@
 @extends('layout.user')
 
+
 @section('meta')
     <!--suppress JSUnresolvedFunction -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker-bs3.css">
+@endsection
+
 @section('content-wrapper')
+    <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            控制台
-            <small>控制面板</small>
+            任务管理
+            <small>创建任务</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ URL::action('User\Dashboard\DashboardController@getIndex') }}"><i
-                            class="fa fa-dashboard"></i>
-                    任务系统</a></li>
-            <li class="active">控制台</li>
+            {{--<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>--}}
+            {{--<li class="active">Here</li>--}}
         </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
         <div class="row">
-            @if($execTask)
-                <div class="col-md-12">
-                    <div class="box box-warning collapsed-box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">
-                                <span>您正在执行：</span>
-                                {{ $execTask->name }}
-                            </h3>
 
-                            <div class="box-tools pull-right">
-
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"
-                                        data-toggle="tooltip"
-                                        title="详细" data-original-title="详细">
-                                    <i class="fa fa-plus"></i></button>
-                                <a href="{{ action('User\Task\WorkController@getIndex') }}" type="button"
-                                   class="btn btn-box-tool" data-toggle="tooltip" title="继续"
-                                   data-original-title="继续">
-                                    <i class="fa fa-play"></i></a>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"
-                                        data-toggle="tooltip"
-                                        title="取消" data-original-title="取消">
-                                    <i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                        <div class="box-body" style="display: none;">
-                            <p>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</p>
-                        </div>
-                    </div>
-                </div>
-            @endif
-
-            <div class="col-md-3">
-                @foreach($projects as $project)
-                    <div class="box box-solid">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">{{ $project->name }}</h3>
-
-                            <div class="box-tools">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
-                                            class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="box-body no-padding">
-                            <ul class="nav nav-pills nav-stacked">
-                                @foreach($modules as $module)
-                                    @if($module->project_id == $project->id)
-                                        <li>
-                                            <a href="#">
-                                                <i class="fa fa-circle-o text-green"></i> {{ $module->name }}
-                                                <span class="label label-primary pull-right">
-                                                    {{ $tasks->where('module_id', $module->id)->count() }}
-                                                </span>
-                                            </a>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-                @endforeach
-            </div>
-            <!-- /.col -->
-            <div class="col-md-9">
-                <div class="input-group input-group-lg" style="margin-bottom: 20px">
-                    <span class="input-group-addon">新任务</span>
-                    <input id="fast-create-task-name" type="text" class="form-control" title="任务名称">
-                    <div class="input-group-btn">
-                        <button id="fast-create-btn" type="button" class="btn btn-primary"><i class="fa fa-flash"></i>
-                        </button>
-                        <a href="{{ action('User\Task\TaskController@getCreate') }}" class="btn btn-primary">创建</a>
-                    </div>
-                </div>
-
+            <div class="col-md-8 col-sm-offset-2">
                 <div class="box box-primary">
                     <div class="box-header">
-                        <h3 class="box-title">任务单</h3>
+                        <h3 class="box-title">创建任务</h3>
+                    </div>
+                    <div class="box-body">
+                        <!-- Date range -->
+                        <form action="#" method="post" class="{{ action('User\Task\TaskController@postCreate') }}">
+                            {!! csrf_field() !!}
+                            <div class="form-group">
+                                <label for="name">任务名称</label>
+                                <input id="name" name="name" type="text" class="form-control" placeholder="请输入任务名称">
+                            </div>
+                            <!-- /.form group -->
+                            <div class="form-group">
+                                <label for="description">任务描述</label>
+                                <textarea id="description" name="description" class="form-control" rows="3"
+                                          placeholder="请输入任务内容"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="module_id">任务模块</label>
+                                <select name="module_id" id="module_id" class="form-control">
+                                    @foreach($modules as $module)
+                                        <option @if($module->id == $defaultModuleId) selected="selected" @endif value="{{ $module->id }}">{{ $module->name }}</option>
+                                    @endforeach
+                                </select>
+                                <!--<span class="select2 select2-container select2-container&#45;&#45;default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection&#45;&#45;single" role="combobox" aria-autocomplete="list" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-31to-container"><span class="select2-selection__rendered" id="select2-31to-container" title="Alabama">Alabama</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>-->
+                            </div>
+                            <!-- Date and time range -->
+                            <div class="form-group">
+                                <label>时间范围</label>
+                                <div class="input-group">
+                                    <input id="plan_started_at" name="plan_started_at" type="datetime"
+                                           class="form-control" title="计划开始日期" style="width: 50%">
+                                    <input id="plan_end_at" name="plan_end_at" type="datetime" class="form-control"
+                                           title="计划结束日期" style="width: 50%">
 
-                        <div class="box-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control pull-right"
-                                       placeholder="Search">
-
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i
-                                                class="fa fa-search"></i></button>
+                                    <div class="input-group-btn">
+                                        <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+                                            <i class="fa fa-calendar"></i> 时间选择
+                                            <i class="fa fa-caret-down"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
+                            <!-- /.form group -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary">创建</button>
+                            </div>
+                        </form>
                     </div>
-                    <!-- /.box-header -->
-                    <div class="box-body table-responsive">
-                        <table class="table table-hover">
-                            <tbody>
-                            <tr>
-                                <th>任务名称</th>
-                                <th>开始日期</th>
-                                <th>模块</th>
-                                <th>操作</th>
-                            </tr>
-                            @foreach($tasks as $task)
-                                <tr>
-                                    <td>{{ $task->name }}</td>
-                                    <td>{{ $task->plan_started_at }}</td>
-                                    <td>
-                                        <span class="label label-success">{{ $module->find($task->module_id)->name }}</span>
-                                    </td>
-                                    <td>
-                                        <a href="{{ URL::action('User\Task\WorkController@getIndex', ['task_id' => $task->id]) }}"
-                                           class="btn btn-primary btn-sm">执行</a></td>
-                                </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.box-body -->
                 </div>
-                <!-- /. box -->
+                <!-- /.box-body -->
             </div>
-            <!-- /.col -->
         </div>
-        <!-- /.row -->
+
+        </div>
     </section>
-    <!-- /.content -->
 @endsection
 
 @section('js')
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
 
-        // 快速创建任务
-        $("#fast-create-btn").bind("click", function () {
-            var fastCreateTaskName = $("#fast-create-task-name").val();
-
-            $.post("{{ action('User\Task\TaskController@postFastCreate') }}",
-                    {
-                        name: fastCreateTaskName
+    <script src="/plugins/moment/min/moment-with-locales.min.js"></script>
+    <script src="/plugins/daterangepicker/daterangepicker.js"></script>
+    <script>
+        $('#daterange-btn').daterangepicker(
+                {
+                    "locale": {
+                        "format": "MM/DD/YYYY",
+                        "separator": " - ",
+                        "applyLabel": "确认",
+                        "cancelLabel": "取消",
+                        "fromLabel": "开始",
+                        "toLabel": "结束",
+                        "customRangeLabel": "自定义",
+                        "daysOfWeek": [
+                            "日",
+                            "一",
+                            "二",
+                            "三",
+                            "四",
+                            "五",
+                            "六"
+                        ],
+                        "monthNames": [
+                            "一月",
+                            "二月",
+                            "三月",
+                            "四月",
+                            "五月",
+                            "六月",
+                            "七月",
+                            "八月",
+                            "九月",
+                            "十月",
+                            "十一月",
+                            "十二月"
+                        ],
+                        "firstDay": 1
                     },
-                    function (data, status) {
-                        if (status == "success") {
-                            location.reload();
-                        }
+                    timePicker: true,
+                    ranges: {
+                        '今天': [moment(), moment().endOf('day')],
+                        '明天': [moment().add(1, 'days').startOf('day'), moment().add(1, 'days').endOf('day')],
+                        '一周': [moment(), moment().add(1, 'weeks').endOf('day')],
+                        '一月': [moment(), moment().add(1, 'months').endOf('day')]
                     }
-            );
-        });
+                },
+                function (start, end) {
+                    $("#plan_started_at").val(start.format('YYYY-MM-D H:mm:s'));
+                    $("#plan_end_at").val(end.format('YYYY-MM-D H:mm:s'));
+                }
+        );
     </script>
 @endsection
