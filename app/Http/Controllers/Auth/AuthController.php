@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Data\Module;
+use App\Data\Project;
 use App\Data\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -33,7 +35,7 @@ class AuthController extends Controller
     /**
      * 登录重定向目录
      */
-    protected $redirectPath ;
+    protected $redirectPath;
 
     /**
      * Create a new authentication controller instance.
@@ -49,7 +51,7 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -64,7 +66,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -86,14 +88,50 @@ class AuthController extends Controller
             );
         }
 
-        //判断邮箱验证码
-        if($request->input('email_token') != $site = session('email_token')){
+        // 判断邮箱验证码
+        if ($request->input('email_token') != $site = session('email_token')) {
             $errors = collect(['邮箱验证码输入不正确']);
             return back()->withInput()->with('errors', $errors);
         }
 
+        // 保存用户
+        $user = $this->create($request->all());
 
-        Auth::login($this->create($request->all()));
+        // 创建用户项目
+        $project = Project::create([
+            'user_id' => $user->id,
+            'name' => $user->name . '的个人生活',
+            'description' => "这是 {$user->name} 的个人生活",
+        ]);
+
+        // 创建用户模块
+        $defaultModel = Module::create([
+            'user_id' => $user->id,
+            'project_id' => $project->id,
+            'name' => '琐事'
+        ]);
+        Module::create([
+            'user_id' => $user->id,
+            'project_id' => $project->id,
+            'name' => '工作'
+        ]);
+        Module::create([
+            'user_id' => $user->id,
+            'project_id' => $project->id,
+            'name' => '娱乐'
+        ]);
+        Module::create([
+            'user_id' => $user->id,
+            'project_id' => $project->id,
+            'name' => '学习'
+        ]);
+
+        // 更新用户默认模块
+        $user->default_module_id = $defaultModel->id;
+        $user->save();
+
+
+        Auth::login($user);
 
         return redirect($this->redirectPath());
     }
@@ -104,14 +142,14 @@ class AuthController extends Controller
 
         $email = $request->input('email');
 
-        $emailToken =  str_random(6);
-        session(['email_token'=> $emailToken]);
+        $emailToken = str_random(6);
+        session(['email_token' => $emailToken]);
 
         //TODO 过期时间
 //        session(['email_created_at'=> $emailToken]);
         Mail::raw("邮箱验证码： {$emailToken}", function ($message) use ($email) {
             $to = $email;
-            $message ->to($to)->subject('欢迎使用 Scholar');
+            $message->to($to)->subject('欢迎使用 Scholar');
         });
         return ['status', 'success'];
     }

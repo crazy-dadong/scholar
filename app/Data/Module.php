@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Module extends Model
 {
+    protected $fillable = ['user_id', 'project_id', 'name','description'];
 
     /**
      * 对用户的一对一
