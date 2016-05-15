@@ -5,6 +5,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 
+@section('css')
+    <style>
+        .task-list {
+            cursor: pointer;
+        }
+    </style>
+@endsection
+
 @section('content-wrapper')
     <section class="content-header">
         <h1>
@@ -38,7 +46,7 @@
                                         data-toggle="tooltip"
                                         title="详细" data-original-title="详细">
                                     <i class="fa fa-plus"></i></button>
-                                <a href="{{ action('User\Task\WorkController@getIndex') }}" type="button"
+                                <a href="{{ action('User\Task\WorkController@getIndex', ['task_id' => $execTask->id]) }}" type="button"
                                    class="btn btn-box-tool" data-toggle="tooltip" title="继续"
                                    data-original-title="继续">
                                     <i class="fa fa-play"></i></a>
@@ -127,20 +135,16 @@
                             <tbody>
                             <tr>
                                 <th>任务名称</th>
-                                <th>开始日期</th>
                                 <th>模块</th>
-                                <th>操作</th>
+                                <th>开始日期</th>
                             </tr>
                             @foreach($tasks as $task)
-                                <tr>
+                                <tr class="task-list" data-href="{{ URL::action('User\Task\WorkController@getIndex', ['task_id' => $task->id]) }}">
                                     <td>{{ $task->name }}</td>
-                                    <td>{{ $task->plan_started_at }}</td>
                                     <td>
                                         <span class="label label-success">{{ $module->find($task->module_id)->name }}</span>
                                     </td>
-                                    <td>
-                                        <a href="{{ URL::action('User\Task\WorkController@getIndex', ['task_id' => $task->id]) }}"
-                                           class="btn btn-primary btn-sm">执行</a></td>
+                                    <td>{{ $task->plan_started_at }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -234,6 +238,10 @@
                 );
             }
 
+        });
+
+        $(".task-list").bind('click', function() {
+            location.href = $(this).attr("data-href");
         });
     </script>
 @endsection
