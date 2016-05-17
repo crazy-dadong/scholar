@@ -16,7 +16,7 @@ class Project extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\Data\User');
+        return $this->hasOne('App\Data\User', 'id');
     }
 
 

@@ -22,7 +22,7 @@ class Task extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\Data\User');
+        return $this->hasOne('App\Data\User', 'id');
     }
 
     /**
@@ -30,8 +30,8 @@ class Task extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function modules()
+    public function module()
     {
-        return $this->hasOne('App\Data\Module');
+        return $this->hasOne('App\Data\Module', 'id');
     }
 }
