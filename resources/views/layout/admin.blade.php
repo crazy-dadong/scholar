@@ -106,6 +106,15 @@
                         <i class="fa fa-users"></i> <span>用户管理</span>
                     </a>
                 </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>任务管理模块</span> <i
+                                class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{ action('Admin\Task\TaskController@getIndex') }}"><i class="fa fa-circle-o"></i> 任务管理</a></li>
+                    </ul>
+                </li>
             </ul>
         </section>
         <!-- /.sidebar -->
