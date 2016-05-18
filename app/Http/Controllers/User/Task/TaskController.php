@@ -69,7 +69,7 @@ class TaskController extends Controller
     public function postFastCreate(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:tasks|max:255',
+            'name' => 'required|max:255',
         ]);
 
         $taskName = $request->input('name');
