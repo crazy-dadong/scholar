@@ -29,6 +29,8 @@ Route::group(['prefix'=>'admin'], function () {
     Route::controller('/dashboard', 'Admin\Dashboard\IndexController');
     Route::controller('/user', 'Admin\User\IndexController');
     Route::controller('/task/task', 'Admin\Task\TaskController');
+    Route::controller('/task/module', 'Admin\Task\ModuleController');
+    Route::controller('/task/project', 'Admin\Task\ProjectController');
 });
 
 // 用户管理

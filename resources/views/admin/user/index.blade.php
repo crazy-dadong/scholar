@@ -34,7 +34,7 @@
 
                 <div class="col-md-12">
                     <div class="box box-primary">
-                        <div class="box-header with-border">
+                        <div class="box-header with-border" style="padding-top: 5px;">
                             <!-- Single button -->
                             <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -46,6 +46,15 @@
                                     <li><a id="set-ban-btn" href="#">禁用</a></li>
                                 </ul>
                             </div>
+                            {{--<div class="box-tools">--}}
+                                {{--<div class="input-group" style="width: 150px;">--}}
+                                    {{--<input type="text" name="table_search" class="form-control pull-right" placeholder="搜索">--}}
+
+                                    {{--<div class="input-group-btn">--}}
+                                        {{--<button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">

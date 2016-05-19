@@ -112,7 +112,10 @@
                                 class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
+                        <li class="active"><a href="{{ action('Admin\Task\ProjectController@getIndex') }}"><i class="fa fa-circle-o"></i> 项目管理</a></li>
+                        <li class="active"><a href="{{ action('Admin\Task\ModuleController@getIndex') }}"><i class="fa fa-circle-o"></i> 模块管理</a></li>
                         <li class="active"><a href="{{ action('Admin\Task\TaskController@getIndex') }}"><i class="fa fa-circle-o"></i> 任务管理</a></li>
+
                     </ul>
                 </li>
             </ul>
