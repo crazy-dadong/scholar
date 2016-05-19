@@ -15,7 +15,7 @@ class Module extends Model
      */
     public function user()
     {
-        return $this->hasOne('App\Data\User', 'id');
+        return $this->belongsTo('App\Data\User');
     }
 
     /**
@@ -25,7 +25,7 @@ class Module extends Model
      */
     public function project()
     {
-        return $this->hasOne('App\Data\Project', 'id');
+        return $this->belongsTo('App\Data\Project');
     }
 
 
