@@ -53,11 +53,14 @@ elixir(function(mix) {
         mix.copy('resources/bower_components/font-awesome/fonts', 'public/build/fonts');
         mix.copy('resources/bower_components/Ionicons/fonts', 'public/build/fonts');
 
+
         // 插件
         mix.copy('resources/bower_components/AdminLTE/plugins/iCheck', 'public/plugins/iCheck');
         mix.copy('resources/bower_components/AdminLTE/plugins/bootstrap-wysihtml5', 'public/plugins/bootstrap-wysihtml5');
         mix.copy('resources/bower_components/AdminLTE/plugins/daterangepicker', 'public/plugins/daterangepicker');
 
         mix.copy('resources/bower_components/moment', 'public/plugins/moment');
+        
+        mix.copy('resources/bower_components/cropper', 'public/plugins/cropper');
     });
 });

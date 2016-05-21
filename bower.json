@@ -19,6 +19,7 @@
     "AdminLTE": "admin-lte#^2.3.3",
     "Ionicons": "ionicons#^2.0.1",
     "font-awesome": "^4.6.1",
-    "moment": "^2.13.0"
+    "moment": "^2.13.0",
+    "cropper": "^2.3.0"
   }
 }

@@ -38,6 +38,7 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            {{--<div class="user-image text-center">疯</div>--}}
                             <img src="/avatar/avatar.png" class="user-image" alt="User Image">
                             <span class="hidden-xs">{{ $user_name = auth()->user()['name'] }}</span>
                         </a>
@@ -53,11 +54,13 @@
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
-                                @can('auth-admin')
+
                                     <div class="pull-left">
-                                        <a href="{{ action('Admin\Dashboard\IndexController@getIndex') }}" class="btn btn-default btn-flat">后台</a>
+                                        <a href="{{ action('User\Settings\IndexController@getIndex') }}" class="btn btn-default btn-flat">设置</a>
+                                        @can('auth-admin')
+                                            <a href="{{ action('Admin\Dashboard\IndexController@getIndex') }}" class="btn btn-default btn-flat">后台</a>
+                                        @endcan
                                     </div>
-                                @endcan
                                 <div class="pull-right">
                                     <a href="{{ URL::action('Auth\AuthController@getLogout') }}"
                                        class="btn btn-default btn-flat">退出</a>
