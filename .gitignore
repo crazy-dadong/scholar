@@ -5,6 +5,9 @@ Homestead.json
 .env
 .idea
 .vagrant/
+.vagrant/action_provision
 #资源文件
 resources/bower_components
 public/build
+Homestead.yml
+.vagrant
