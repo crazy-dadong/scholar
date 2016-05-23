@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('avatar');
             $table->string('password', 60);
             $table->boolean('is_admin');
             $table->bigInteger('default_module_id')->default(0);  //默认模块
@@ -34,6 +35,7 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Log:info();
         Schema::drop('users');
     }
 }

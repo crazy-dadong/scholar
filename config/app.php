@@ -151,6 +151,11 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
 
+        /**
+         * App
+         */
+        Intervention\Image\ImageServiceProvider::class,
+
     ],
 
     /*
@@ -198,6 +203,11 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+        /**
+         * App
+         */
+        'Image' => Intervention\Image\Facades\Image::class,
 
         /*
          * Development

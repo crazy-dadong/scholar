@@ -11,3 +11,5 @@ resources/bower_components
 public/build
 Homestead.yml
 .vagrant
+/_ide_helper.php
+/composer.lock

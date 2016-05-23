@@ -39,6 +39,9 @@ Route::group(['prefix'=>'user'], function () {
     Route::controller('/task/model', 'User\Task\ModelController');
     Route::controller('/task/task', 'User\Task\TaskController');
     Route::controller('/task/work', 'User\Task\WorkController');
+
+    // 用户基本设置
+    Route::controller('/settings/index', 'User\Settings\IndexController');
 });
 
 
