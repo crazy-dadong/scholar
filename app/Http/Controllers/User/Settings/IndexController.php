@@ -37,12 +37,12 @@ class IndexController extends Controller
 
         $img = Image::canvas(120, 120, '#FFFFFF');
 
-        $img->text("你", 60, 60, function($font) {
-            $font->file(public_path('fonts/zhankuhei.ttf'));
-            $font->size(64);
+        $img->text("疯", 120, 120, function($font) {
+            $font->file(public_path('fonts/zcool.ttf'));
+            $font->size(80);
             $font->color('#0073b7');
             $font->align('center');
-//            $font->valign('center');
+            $font->valign('center');
         });
         $img->save(public_path('avatar/demoAvatar.png'));
 

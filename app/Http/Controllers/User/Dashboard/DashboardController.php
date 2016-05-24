@@ -5,7 +5,7 @@ namespace App\Http\Controllers\User\Dashboard;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\Controller;
 
 use App\Data\Project;
 use App\Data\Module;
@@ -21,7 +21,7 @@ class DashboardController extends Controller
      */
     public function getIndex(Request $request)
     {
-        $user = $request->user();
+        $user = $this->user;
 
         if($user->task_id){
             $execTask = Task::find($user->task_id);

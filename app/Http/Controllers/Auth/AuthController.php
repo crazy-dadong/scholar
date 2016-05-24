@@ -9,13 +9,16 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
-// Dev
+
 use URL;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Mail;
+use Image;
 
 
+/**
+ */
 class AuthController extends Controller
 {
     /*
@@ -78,6 +81,10 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function postRegister(Request $request)
     {
         $validator = $this->validator($request->all());
@@ -126,8 +133,21 @@ class AuthController extends Controller
             'name' => '学习'
         ]);
 
-        // 更新用户默认模块
-        $user->default_module_id = $defaultModel->id;
+        // 创建用户头像
+
+        $img = Image::canvas(120, 120, '#FFFFFF');
+        $imgText = mb_substr($user->name, 0, 1);
+        $img->text($imgText, 60, 60, function($font) {
+            $font->file(public_path('fonts/zcool.ttf'));
+            $font->size(100);
+            $font->color('#0073b7');
+            $font->align('center');
+            $font->valign('center');
+        });
+        $img->save(public_path("avatar/{$user->id}.png"));
+
+        
+        $user->default_module_id = $defaultModel->id;   // 默认模块ID
         $user->save();
 
 
